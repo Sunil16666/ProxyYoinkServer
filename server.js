@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const { faker } = require('@faker-js/faker');
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3003
 
 const getData = () => {
     let data = []
@@ -16,6 +16,7 @@ const getData = () => {
 }
 
 app.get('/', (req, res) => {
+    if (parseInt(req.query.page) >= 19) return res.json({ data: [] })
     res.json({
         data: getData()
     })

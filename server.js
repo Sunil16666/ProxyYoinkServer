@@ -1,10 +1,23 @@
 const express = require('express')
 const app = express()
+const { faker } = require('@faker-js/faker');
 const port = process.env.PORT || 3000
+
+const getData = () => {
+    let data = []
+    for (let i = 0; i < 10; i++) {
+        data.push({
+            ip: faker.internet.ip(),
+            port: faker.internet.port(),
+            protocols: [faker.internet.protocol()],
+        })
+    }
+    return data
+}
 
 app.get('/', (req, res) => {
     res.json({
-        data: []
+        data: getData()
     })
 })
 

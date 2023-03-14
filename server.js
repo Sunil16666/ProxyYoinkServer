@@ -16,7 +16,7 @@ const getData = () => {
 }
 
 app.get('/', (req, res) => {
-    if (Math.random() < 0.005) return res.json({ data: [] })
+    if (Math.random() < 0.05) return res.json({ data: [] })
     res.json({
         data: getData()
     })

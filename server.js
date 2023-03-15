@@ -16,11 +16,10 @@ const getData = () => {
 }
 
 app.get('/', (req, res) => {
-    if (Math.random() < 0.25) return res.json({ data: [] })
+    if (parseInt(req.query.page) >= 1) return res.json({ data: [] })
     res.json({
         data: getData()
-    })
-})
+    })}
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

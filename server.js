@@ -22,6 +22,10 @@ app.get('/', (req, res) => {
     })
 })
 
+app.get('/empty', (req, res) => {
+    return res.json({ data: [] })
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })

@@ -16,7 +16,7 @@ const getData = () => {
 }
 
 app.get('/', (req, res) => {
-    if (Math.random() < 0.25) return res.json({ data: [] })
+    if (parseInt(req.query.page) >= 8) return res.json({ data: [] })
     res.json({
         data: getData()
     })

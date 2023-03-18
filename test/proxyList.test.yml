@@ -1,0 +1,42 @@
+version: "1.0"
+name: Proxy Test Workflow
+env:
+  host: http://localhost:3003
+  resource: proxies
+tests:
+  empty:
+    name: Empty data route test
+    steps:
+      - name: Send request for page 1
+        http:
+          url: ${{env.host}}/empty
+          method: GET
+          params:
+            page: 1
+          check:
+            status: 200
+            jsonpath:
+              $.data.length: 0
+  data:
+    name: Data route test
+    steps:
+      - name: Send request for page 1
+        http:
+          url: ${{env.host}}
+          method: GET
+          params:
+            page: 1
+          check:
+            status: 200
+            jsonpath:
+              $.data.length: 10
+      - name: Send request for page 8
+        http:
+          url: ${{env.host}}
+          method: GET
+          params:
+            page: 8
+          check:
+            status: 200
+            jsonpath:
+              $.data.length: 0

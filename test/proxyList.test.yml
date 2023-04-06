@@ -1,7 +1,7 @@
 version: "1.0"
 name: Proxy Test Workflow
 env:
-  host: https://proxyyoinkserver-production.up.railway.app
+  host: http://localhost:3003
   resource: proxies
 tests:
   empty:

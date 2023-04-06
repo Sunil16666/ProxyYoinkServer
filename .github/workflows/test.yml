@@ -1,15 +1,19 @@
-on: 
- workflow_dispatch:
- repository_dispatch:
-  types:
-    - webhook
+on: [push]
 jobs:
-  api_test:
+  tests:
     runs-on: ubuntu-latest
-    name: API Tests
     steps:
-      - uses: actions/checkout@v3
-      - name: Step CI Action
-        uses: stepci/stepci@main
+      # Checkout the Repo
+      - uses: actions/checkout@v2
+
+      # Install Node 12
+      - name: Setup Node
+        uses: actions/setup-node@v1
         with:
-          workflow: "test/proxyList.test.yml"
+          node-version: 12
+
+      # Install dependencies
+      - run: npm install
+
+      # Run tests
+      - run: npm test
